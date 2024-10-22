@@ -1,6 +1,9 @@
 #!/bin/bash
 
+echo 'Installing MinGW64 and FLTK...'
 pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-fltk mingw-w64-x86_64-make
+echo 'Done!'
+echo -n 'Testing...'
 echo '#include <FL/Fl.H>' > testefltk.cpp
 echo '#include <FL/Fl_Window.H>' >> testefltk.cpp
 echo '#include <FL/Fl_Box.H>' >> testefltk.cpp
@@ -25,8 +28,11 @@ echo '}' >> testefltk.cpp
 
 g++ -c testefltk.cpp -o testefltk.o
 g++ testefltk.o -o testefltk.exe -lfltk
+echo 'Done!'
+echo -n 'Check if a window opened in backgroud. Close it to continue...'
 
 ./testefltk.exe
 
 rm -f ./testefltk.o
 rm -f ./testefltk.exe
+echo 'Finish!'
